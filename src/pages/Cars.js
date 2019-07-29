@@ -11,7 +11,7 @@ import Pagination from './../components/pagination.js';
 
 class Cars extends Component{
 
-	constructor(props) {
+  constructor(props) {
     super(props);
     
     const {getCars} = props.actions
@@ -21,117 +21,113 @@ class Cars extends Component{
   }
   
   componentWillReceiveProps(nextProps){
-		if(this.props.params.page !== nextProps.params.page) {
-			const {getCars} = nextProps.actions
-			getCars(nextProps.params.page, this.props.reducerCars.filter)
-		}
+    if(this.props.params.page !== nextProps.params.page) {
+      const {getCars} = nextProps.actions
+      getCars(nextProps.params.page, this.props.reducerCars.filter)
+    }
+  }
 
-		console.log(this.props.reducerCars.filter);
-		console.log(nextProps.reducerCars.filter);
-	}
+  handleChange(name, event) {
+    const newFilter = this.props.reducerCars.filter;
 
-	handleChange(name, event) {
-		const newFilter = this.props.reducerCars.filter;
-
-		if(event.target.checked === true) {
-			newFilter.push(name);
-		} else {
-			var index = newFilter.indexOf(name);
-			newFilter.splice(index, 1);
-		}
-		
+    if(event.target.checked === true) {
+      newFilter.push(name);
+    } else {
+      let index = newFilter.indexOf(name);
+      newFilter.splice(index, 1);
+    }
+    
     this.props.actions.filter(newFilter);
-
   }
 
   handlePagination(pageNumber) {
     this.props.router.push('/cars/' + pageNumber);
   }
 
-	render() {
-		
-		const {reducerCars} = this.props;
-		const {currentPage, noOfPages, isLoading} = reducerCars;
+  render() {
+    
+    const {reducerCars} = this.props;
+    const {currentPage, noOfPages, isLoading, filter} = reducerCars;
 
-		if (isLoading) {
-			return (
-				<div>Loading...</div>
-			)
-		} else {
-			return (
-				<div className="Cars">
+    if (isLoading) {
+      return (
+        <div>Loading...</div>
+      )
+    } else {
+      return (
+        <div className="Cars">
           <div className="container py-3">
             <FormGroup aria-label="position" name="position" row>
               <FormControlLabel
                 control={
-                  <Switch value="3" onChange={this.handleChange.bind(this,3)} color="primary" />
+                  <Switch checked={filter.indexOf(3) > -1} value="3" onChange={this.handleChange.bind(this,3)} color="primary" />
                 }
                 labelPlacement="start"
                 label="Original"
               />
               <FormControlLabel
                 control={
-                  <Switch value="4" onChange={this.handleChange.bind(this,4)} color="primary" />
+                  <Switch checked={filter.indexOf(4) > -1} value="4" onChange={this.handleChange.bind(this,4)} color="primary" />
                 }
                 labelPlacement="start"
                 label="Custom"
               />
               <FormControlLabel
                 control={
-                  <Switch value="5" onChange={this.handleChange.bind(this,5)} color="primary" />
+                  <Switch checked={filter.indexOf(5) > -1} value="5" onChange={this.handleChange.bind(this,5)} color="primary" />
                 }
                 labelPlacement="start"
                 label="Renovate"
               />
             </FormGroup>
           </div>
-					<div className="container my-3">
-		        <TransitionGroup className="row">
-		          {reducerCars.cars.map((car) => {
-		            return (
-		              <CSSTransition
-		                key={car.id}
-		                timeout={0}
-		                classNames="item"
-		              >
-		                <CarTeaser key={car.id} car={car} />
-		              </CSSTransition>
-		            )
-		          })}
-		        </TransitionGroup>
-		        <div className="container">
-	            <Pagination
-	              total={parseInt(noOfPages)}
-	              current={parseInt(currentPage)}
-	              prevText="Prev"
-	              showPages={true}
-	              nextText="Next"
-	              onClickPage={this.handlePagination}
-	              baseClassName="pagination justify-content-center"
-		          />
-		        </div>
-		      </div>
-		    </div>
-			);
-		}
-	}
+          <div className="container my-3">
+            <TransitionGroup className="row">
+              {reducerCars.cars.map((car) => {
+                return (
+                  <CSSTransition
+                    key={car.id}
+                    timeout={0}
+                    classNames="item"
+                  >
+                    <CarTeaser key={car.id} car={car} />
+                  </CSSTransition>
+                )
+              })}
+            </TransitionGroup>
+            <div className="container">
+              <Pagination
+                total={parseInt(noOfPages)}
+                current={parseInt(currentPage)}
+                prevText="Prev"
+                showPages={true}
+                nextText="Next"
+                onClickPage={this.handlePagination}
+                baseClassName="pagination justify-content-center"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
 
 }
 
 function mapStateToProps(state) {
   const {reducerCars} = state;
-	return {
-		reducerCars
-	}
+  return {
+    reducerCars
+  }
 }
 
 function mapDispatchToProps(dispatch){
-	return{
-		actions: bindActionCreators(Actions, dispatch)
-	}
+  return{
+    actions: bindActionCreators(Actions, dispatch)
+  }
 }
 
 export default connect(
   mapStateToProps,
-	mapDispatchToProps
+  mapDispatchToProps
 )(Cars);

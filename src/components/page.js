@@ -11,7 +11,7 @@ export default class Page extends React.Component {
 
     render() {
         const item = this.props.onClick ?
-            <a className="page-link" href="#" onClick={this.props.onClick}>{this.props.children}</a>
+            <button className="page-link" onClick={this.props.onClick}>{this.props.children}</button>
             :
             <span className="page-link">{this.props.children}</span>;
 

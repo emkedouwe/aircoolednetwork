@@ -1,4 +1,4 @@
-export const WP_SITE_URL = 'http://dev.nl/aircoolednetwork';
+export const WP_SITE_URL = 'https://www.aircoolednetwork.com';
 export const WP_API = '/wp-json/wp/v2/';
 export const POSTS_PER_PAGE = 6;
 
