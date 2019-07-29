@@ -1,0 +1,15 @@
+/* Utilities */
+@import "variables";
+@import "../../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+
+/* Extra color utilities */
+
+
+/* Z-index utilities */
+.z-index-1 {
+	z-index: 1;
+}
+
+.z-index-100 {
+	z-index: 100;
+}

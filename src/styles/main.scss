@@ -1,0 +1,147 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/_functions.scss";
+@import "../../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+@import "utilities";
+
+@include media-breakpoint-down(sm) {
+    html {
+        font-size: 0.875rem;
+    }
+}
+
+/* 1. Tags (atoms) */
+/* 2. Componenten (molecules) */
+	/* 2.1 Hamburger icon */
+/* 3. Elementen (organisme) */
+	/* 3.1 Header */
+	/* 3.2 Menu */
+/* 4. Widgets en modules */
+	/* 4.1 MailChimp subscribe */
+/* 5. Pagina's */
+	/* 5.1 Homepage */
+/* 6. Page Editor */
+
+
+/* 1. Tags (atoms) */
+
+	html {
+		height: 100%;
+	}
+
+	body {
+		height: 100%;
+	}
+
+	#root {
+		height: 100%;
+	}
+
+	.app {
+		height: 100%;
+	}
+
+	h1,h2,h5,h6,
+	.h1,.h2,.h5,.h6 {
+		text-transform: uppercase;
+	}
+
+	h3 {
+		font-family: $fnt-default-text;
+		font-weight: bold;
+	}
+
+	h4 {
+		font-family: $fnt-default-text;
+		font-weight: bold;
+	}
+
+	.mm-page {
+		width: 100%;
+	}
+
+	#page-wrapper {
+		width: 100%;
+	}
+
+/* 2. Componenten (molecules) */
+	/* 2.1 Hamburger icon */
+/* 3. Elementen (organisme) */
+	/* 3.1 Header */
+	/* 3.2 Menu */
+	.navbar-nav {
+		.nav-link {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.125rem;
+		}
+	}
+
+	/* 3.3 Car teaser */
+	.item-enter {
+	  	opacity: 0;
+	}
+	.item-enter-active {
+	  	opacity: 1;
+	  	transition: opacity 300ms ease-in;
+	}
+	.item-exit {
+	  	opacity: 1;
+	}
+	.item-exit-active {
+	  	opacity: 0;
+	  	transition: opacity 300ms ease-in;
+	}
+
+/* 4. Widgets en modules */
+
+	/* 4.1 MailChimp subscribe */
+	#mc_embed_signup {
+		margin-top: 45px;
+	}
+
+	#mc_embed_signup .row {
+		display: flex;
+	}
+
+	#mc_embed_signup .mc-field-group:nth-child(1) {
+		width: 80%;
+		padding: 0 15px;
+	}
+
+	#mc_embed_signup .mc-field-group:nth-child(2) {
+		width: 20%;
+		padding: 0 15px;
+	}
+
+	#mc_embed_signup label {
+		display: inline-block;
+		margin: 0 0 15px 0;
+	}
+
+	.mc-field-group {
+		text-align: left;
+	}
+
+	#mce-responses .response {
+		padding: 35px;
+	}
+
+/* 5. Pagina's */
+	/* 5.1 Homepage */
+	.home {
+		background: url(../images/background.jpg) no-repeat;
+		background-size: cover;
+		height: 100%;
+		display: flex;
+    	align-items: center;
+	}
+	body.page-template-template-homepage {
+		background: url(../images/background.jpg) no-repeat;
+		background-size: cover;
+		height: 100%;
+		display: flex;
+    	align-items: center;
+	}
+/* 6. Page Editor */
+
+
