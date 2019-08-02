@@ -1,5 +1,6 @@
 import {
   REQUEST_CARS, CARS_LOADED, TOTAL_PAGES_FOR_CARS, CAR_FILTER,
+  REQUEST_LATEST_CARS, CARS_LATEST_LOADED,
   WP_SITE_URL, WP_API, POSTS_PER_PAGE
 } from '../constants/constants';
 
@@ -52,6 +53,27 @@ export function getCars(currentPage, filter) {
       })
       .then(json => {
         dispatch({ type: CARS_LOADED, payload: json });
+      });
+  };
+}
+
+function requestLatestCars(loading){
+  return{
+    type: REQUEST_LATEST_CARS,
+    loading: loading
+  }
+}
+
+export function getLatestCars() {
+  return function(dispatch) {
+    dispatch(requestLatestCars(true));
+
+    return fetch(WP_SITE_URL + WP_API + "car?per_page=3&orderby=date&order=desc&_embed")
+      .then(function(response){
+        return response.json();
+      })
+      .then(json => {
+        dispatch({ type: CARS_LATEST_LOADED, payload: json });
       });
   };
 }

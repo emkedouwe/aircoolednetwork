@@ -49,6 +49,7 @@
 
 	//$gray-600:					$grey;
 	//$gray-800:					$grey-dark;
+	$gray-100:					#EEEFF0;
 
 	$body-bg:					$white;
 	$body-color:				$clr-blue-dark;
@@ -104,3 +105,7 @@ $card-border-width:				0;
 $pagination-active-color:		$black;
 $pagination-bg:					transparent;
 $pagination-border-color:		$primary;
+
+/* Badge */
+$badge-padding-y:				.25em !default;
+$badge-padding-x:				1em;

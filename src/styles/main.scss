@@ -12,6 +12,7 @@
 /* 1. Tags (atoms) */
 /* 2. Componenten (molecules) */
 	/* 2.1 Hamburger icon */
+	/* 2.2 Car Teaser Card */
 /* 3. Elementen (organisme) */
 	/* 3.1 Header */
 	/* 3.2 Menu */
@@ -63,8 +64,32 @@
 		width: 100%;
 	}
 
+	#loader {
+		width: 100%;
+		background: url(../images/gear-loading-icon.svg) center no-repeat;
+		background-size: 48px;
+		height: 200px;
+	}
+
+	.badge-outline-light {
+		border-radius: 24px;
+		color: $gray-100;
+		border: 2px solid $gray-100;
+	}
+
 /* 2. Componenten (molecules) */
 	/* 2.1 Hamburger icon */
+	
+	/* 2.2 Car Teaser Card */
+	.car.teaser {
+		.condition {
+			font-size: 1.4rem;
+			.badge {
+				margin-right: 15px;
+			}
+		}
+	}
+
 /* 3. Elementen (organisme) */
 	/* 3.1 Header */
 	/* 3.2 Menu */

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router';
 import {WP_SITE_URL, WP_API} from '../constants/constants';
+
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 class Car extends Component {
 
@@ -8,8 +12,12 @@ class Car extends Component {
     super(props);
 
     this.state = {
-      loaded: false
+      loaded: false,
+      isOpen: false,
+      index: 0
     };
+
+    this.openLightbox = this.openLightbox.bind(this);
   }
 
   componentWillMount() {
@@ -25,7 +33,14 @@ class Car extends Component {
     })
   }
 
+  openLightbox(index) {
+    console.log(index);
+    this.setState({ index: index, isOpen: true });
+  }
+
   render() {
+    const { isOpen } = this.state;
+
     if (this.state.loaded) {
       const car = this.state.car;
 
@@ -37,6 +52,10 @@ class Car extends Component {
           </Helmet>
           
           <div className="container my-3">
+
+            <div className="mb-2">
+              <Link to="/cars" className="mb-4">&laquo; Back</Link>
+            </div>
 
             <h1 className="mb-0" dangerouslySetInnerHTML={{__html: `${car.title.rendered}`}}></h1>
             <h4>&euro; {car.acf.car_price}</h4>
@@ -96,16 +115,34 @@ class Car extends Component {
                 
                 <div className="car-gallery d-flex flex-wrap">
 
-                  {car.acf.car_images.map(image =>
+                  {car.acf.car_images.map((image,index) =>
                     <div className="col-6 mb-3" key={image.id} >
-                      <a href={image.url}>
+                      <a type="button" onClick={() => this.openLightbox(index)}>
                         <img src={image.sizes.medium} className="img-fluid" alt="" />
                       </a>
                     </div>
                   )}
-
                   
                 </div>
+
+                {isOpen && (
+                  <Lightbox
+                    mainSrc={car.acf.car_images[this.state.index].sizes.large}
+                    nextSrc={car.acf.car_images[(this.state.index + 1) % car.acf.car_images.length].sizes.large}
+                    prevSrc={car.acf.car_images[(this.state.index + car.acf.car_images.length - 1) % car.acf.car_images.length].sizes.large}
+                    onCloseRequest={() => this.setState({ isOpen: false })}
+                    onMovePrevRequest={() =>
+                      this.setState({
+                        index: (this.state.index + car.acf.car_images.length - 1) % car.acf.car_images.length,
+                      })
+                    }
+                    onMoveNextRequest={() =>
+                      this.setState({
+                        index: (this.state.index + 1) % car.acf.car_images.length,
+                      })
+                    }
+                  />
+                )}
 
               </div>
             </div>
@@ -115,7 +152,7 @@ class Car extends Component {
       );
     } else {
       return (
-        <div>Loading...</div>
+        <div id="loader"></div>
       );
     }
   }

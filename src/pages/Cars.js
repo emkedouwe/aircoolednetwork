@@ -6,6 +6,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import * as Actions from '../actions/actions';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import { Helmet } from "react-helmet";
+
 import CarTeaser from './../components/carteaser.js';
 import Pagination from './../components/pagination.js';
 
@@ -51,11 +53,14 @@ class Cars extends Component{
 
     if (isLoading) {
       return (
-        <div>Loading...</div>
+        <div id="loader"></div>
       )
     } else {
       return (
         <div className="Cars">
+          <Helmet>
+            <title>Explore the Aircooled Network</title>
+          </Helmet>
           <div className="container py-3">
             <FormGroup aria-label="position" name="position" row>
               <FormControlLabel
