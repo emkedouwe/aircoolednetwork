@@ -93,7 +93,7 @@ export function sendContact( formData ) {
   return function(dispatch) {
     dispatch(requestFormSubmit(true));
 
-    return fetch(WP_SITE_URL + "/wp-json/contact-form-7/v1/contact-forms/62/feedback", {
+    return fetch(WP_SITE_URL + "/wp-json/contact-form-7/v1/contact-forms/1198/feedback", {
       method: 'POST',
       body: formData,
     })

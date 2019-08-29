@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class CarTeaser extends Component {
 
@@ -7,12 +7,12 @@ class CarTeaser extends Component {
 		return (
 			<div className="col-12 col-sm-4">	
 				<div className="card bg-light mb-4 car teaser">
-					{this.props.car.acf.car_images[0]
+					{this.props.car.acf.car_images
 	  			&& (		
 						<img className="card-img-top" src={this.props.car.acf.car_images[0].sizes.medium} alt={this.props.car.title.rendered} />
 					)}
 	  				<div className="bg-secondary p-2 condition">
-	  					{this.props.car._embedded
+	  					{this.props.car._embedded && this.props.car._embedded['wp:term']
 					  	&& (
 					  		this.props.car._embedded['wp:term'][0].map((term) => {
 					  			if(term.taxonomy === "condition") {

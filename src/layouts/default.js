@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Header from './../components/header.js';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -16,17 +17,18 @@ const theme = createMuiTheme({
   },
 });
 
-class Default extends Component {
-  render() {
-    return (
+const DefaultLayout = ({component: Component, ...rest}) => {
+  return (
+    <Route {...rest} render={matchProps => (
       <div className="app">
         <ThemeProvider theme={theme}>
           <Header />
-          {this.props.children}
+          <Component {...matchProps} />
         </ThemeProvider>
       </div>
-    );
-  }
-}
+    )} />
+  )
+};
 
-export default Default;
+
+export default DefaultLayout;

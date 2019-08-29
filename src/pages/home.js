@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import * as Actions from '../actions/actions';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';

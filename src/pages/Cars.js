@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import { withRouter } from "react-router-dom";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -17,15 +18,15 @@ class Cars extends Component{
     super(props);
     
     const {getCars} = props.actions
-    getCars(props.params.page, props.reducerCars.filter)
+    getCars(props.match.params.page, props.reducerCars.filter)
 
     this.handlePagination = this.handlePagination.bind(this);
   }
   
   componentWillReceiveProps(nextProps){
-    if(this.props.params.page !== nextProps.params.page) {
+    if(this.props.match.params.page !== nextProps.match.params.page) {
       const {getCars} = nextProps.actions
-      getCars(nextProps.params.page, this.props.reducerCars.filter)
+      getCars(nextProps.match.params.page, this.props.reducerCars.filter)
     }
   }
 
@@ -43,7 +44,7 @@ class Cars extends Component{
   }
 
   handlePagination(pageNumber) {
-    this.props.router.push('/cars/' + pageNumber);
+    this.props.history.push('/cars/' + pageNumber);
   }
 
   render() {

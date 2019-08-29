@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './../images/logo-simple.svg';
-import { Link } from 'react-router';
-import { NavLink} from 'react-router-dom'
+import { Link, NavLink} from 'react-router-dom'
 
 function Header() {
   return (

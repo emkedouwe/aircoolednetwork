@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import {WP_SITE_URL, WP_API} from '../constants/constants';
 
 import Lightbox from 'react-image-lightbox';
@@ -21,7 +21,7 @@ class Car extends Component {
   }
 
   componentWillMount() {
-    let slug = this.props.params.slug;
+    let slug = this.props.match.params.slug;
 
     fetch(WP_SITE_URL + WP_API + "car?slug=" + slug)
     .then(response => response.json())
@@ -54,7 +54,7 @@ class Car extends Component {
           <div className="container my-3">
 
             <div className="mb-2">
-              <Link to="/cars" className="mb-4">&laquo; Back</Link>
+              <span onClick={() => this.props.history.goBack()}>&laquo; Back</span>
             </div>
 
             <h1 className="mb-0" dangerouslySetInnerHTML={{__html: `${car.title.rendered}`}}></h1>
