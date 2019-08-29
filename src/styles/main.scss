@@ -20,7 +20,7 @@
 	/* 4.1 MailChimp subscribe */
 /* 5. Pagina's */
 	/* 5.1 Homepage */
-/* 6. Page Editor */
+	/* 5.2 Contact */
 
 
 /* 1. Tags (atoms) */
@@ -31,6 +31,7 @@
 
 	body {
 		height: 100%;
+		overflow: scroll;
 	}
 
 	#root {
@@ -44,6 +45,10 @@
 	h1,h2,h5,h6,
 	.h1,.h2,.h5,.h6 {
 		text-transform: uppercase;
+	}
+
+	h1 {
+		font-weight: bold;
 	}
 
 	h3 {
@@ -75,6 +80,11 @@
 		border-radius: 24px;
 		color: $gray-100;
 		border: 2px solid $gray-100;
+	}
+
+	label {
+		font-weight: bold;
+		color: $clr-blue-light;
 	}
 
 /* 2. Componenten (molecules) */
@@ -165,6 +175,24 @@
 		display: flex;
     	align-items: center;
 	}
-/* 6. Page Editor */
+	
+	/* 5.2 Contact */
+	.contact {
+		background-color: $gray-100;
+	}
+
+	.contact header {
+		margin-top: -100px;
+		margin-bottom: 100px;
+
+		img {
+			transform: translateY(100px);
+		}
+	}
+
+	.contact textarea {
+		height: 155px;
+	}
+
 
 

@@ -1,9 +1,11 @@
 import {
   REQUEST_CARS, CARS_LOADED, TOTAL_PAGES_FOR_CARS, CAR_FILTER,
   REQUEST_LATEST_CARS, CARS_LATEST_LOADED,
+  REQUEST_FORM_SUBMIT, REQUEST_FORM_MESSAGE,
   WP_SITE_URL, WP_API, POSTS_PER_PAGE
 } from '../constants/constants';
 
+// Actions om overzicht op te halen
 function requestCars(currentPage, loading){
   return{
     type: REQUEST_CARS,
@@ -57,6 +59,7 @@ export function getCars(currentPage, filter) {
   };
 }
 
+// Actions om laatste auto' op te halen
 function requestLatestCars(loading){
   return{
     type: REQUEST_LATEST_CARS,
@@ -76,4 +79,31 @@ export function getLatestCars() {
         dispatch({ type: CARS_LATEST_LOADED, payload: json });
       });
   };
+}
+
+// Actions om formulieren te versturen
+function requestFormSubmit(sending){
+  return{
+    type: REQUEST_FORM_SUBMIT,
+    sending: sending
+  }
+}
+
+export function sendContact( formData ) {
+  return function(dispatch) {
+    dispatch(requestFormSubmit(true));
+
+    return fetch(WP_SITE_URL + "/wp-json/contact-form-7/v1/contact-forms/62/feedback", {
+      method: 'POST',
+      body: formData,
+    })
+    .then(function(response){
+      return response.json();
+    })
+    .then(json => {
+      dispatch({ type: REQUEST_FORM_MESSAGE, payload: json });
+    });
+
+    //formData.forEach(entries => console.log(entries));
+  }
 }

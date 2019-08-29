@@ -11,6 +11,7 @@ import App from './layouts/default';
 import Home from './pages/home';
 import Cars from './pages/Cars';
 import Car from './pages/car';
+import Contact from './pages/contact';
 import TagManager from 'react-gtm-module'
 
 const tagManagerArgs = {
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Route path="/cars/:page" component={Cars} />
         <Redirect from='/cars' to='cars/1'/>
         <Route path="/car/:slug" component={Car} />
+        <Route path="/contact" component={Contact} />
       </Route>
     </Router>
   </Provider>
